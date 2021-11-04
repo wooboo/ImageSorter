@@ -119,7 +119,11 @@ namespace ImageSorter
                 var result = Regex.Match(name, "((\\d{4}).?(\\d{2}).?(\\d{2})).?((\\d{2}).?(\\d{2}).?(\\d{2}))?");
                 if (result.Success)
                 {
-                    if (result.Groups.Count >= 8)
+                    if (
+                        !string.IsNullOrEmpty(result.Groups[6].Value) &&
+                        !string.IsNullOrEmpty(result.Groups[7].Value) &&
+                        !string.IsNullOrEmpty(result.Groups[8].Value)
+                        )
                     {
                         directory.Set(SidecarMetadataDirectory.TagDateFromFilename,
                             new DateTime(
